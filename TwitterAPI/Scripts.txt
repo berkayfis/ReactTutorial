@@ -1,0 +1,7 @@
+Mongo Db 
+
+> mongod --dbpath D:\MongoDB  
+
+Frontend
+
+PS C:\Users\BerkayFis\source\repos\TwitterAPI\FrontEnd> npm start

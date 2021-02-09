@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using TwitterAPI.Core.Context;
 using TwitterAPI.Core.Mapper;
 using TwitterAPI.Core.Posts;
+using TwitterAPI.Core.UserManagement;
 using TwitterAPI.Providers;
 using TwitterAPI.Services;
 
@@ -33,11 +34,16 @@ namespace TwitterAPI
                 sp.GetRequiredService<IOptions<TwitterDatabaseSettings>>().Value);
 
             services.AddScoped<IPostService,PostService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IPostProvider, PostProvider>();
+            services.AddScoped<IUserProvider, UserProvider>();
 
             services.AddAutoMapper(typeof(CustomMapperProfile));
             services.AddControllers();
+
+            // Add Cors
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +59,9 @@ namespace TwitterAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(builder => builder
+                .WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {

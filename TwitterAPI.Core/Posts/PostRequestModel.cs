@@ -6,6 +6,6 @@ namespace TwitterAPI.Core.Posts
 {
     public class PostRequestModel
     {
-        public string Context { get; set; }
+        public string Content { get; set; }
     }
 }

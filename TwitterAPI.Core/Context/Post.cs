@@ -9,7 +9,9 @@ namespace TwitterAPI.Core.Context
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        public string Context { get; set; }
+        public string Content { get; set; }
         public DateTime CreateDate { get; set; }
+
+        public User User{ get; set; }
     }
 }
